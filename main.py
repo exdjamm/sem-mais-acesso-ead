@@ -114,6 +114,8 @@ def marcar_presencas():
 		nome = course_data['course_name']
 		url = course_data['link']
 
+		session.get(url)
+
 		print(f"Marcando em: {nome}")
 
 	pass
