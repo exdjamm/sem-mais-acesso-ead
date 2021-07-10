@@ -1,8 +1,10 @@
 from eadapi import scrapead 
 
-import os.path as path
+import os.path as path_os
+
 from json import loads, dumps
 
+DIR_NAME, _ = path_os.split(path_os.abspath(__file__))
 session = None
 
 ## Code for fun
@@ -64,8 +66,8 @@ def print_clear(s: str):
 
 ## Code for EAD
 def get_login():
-	name_file = 'login.json'
-	file_exists = path.exists(name_file)
+	name_file = f"{DIR_NAME}/login.json"
+	file_exists = path_os.exists(name_file)
 
 	login = list()
 
@@ -100,7 +102,7 @@ def get_login():
 
 def filter_courses(course_name, course_id) -> bool:
 	is_this_semestre = [term in course_name for term in ['2021-1', '2021/2'] ]
-	return any(is_this_semestre)
+	# return any(is_this_semestre)
 
 def filter_tasks(task_data) -> bool:
 	return True

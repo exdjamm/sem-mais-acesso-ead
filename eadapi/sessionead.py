@@ -4,6 +4,9 @@ from eadapi.scrap_utils import getDataByDict
 
 # class for files in tasks : fileuploadsubmission
 
+import os.path as path_os
+DIR_NAME, _ = path_os.split(path_os.abspath(__file__))
+
 class SessionEad(Session):
 
 	"""Cria uma Session autenticada com o login e senha passados no site do EAD IFMS.
@@ -16,7 +19,7 @@ class SessionEad(Session):
 		super(SessionEad, self).__init__()
 
 		self.headers.update({'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'})
-		self.verify = "ead-ifms-edu-br-chain.pem"
+		self.verify = f"{DIR_NAME}/ead-ifms-edu-br-chain.pem"
 
 		self._filter_data = getDataByDict
 
