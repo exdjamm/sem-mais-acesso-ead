@@ -101,8 +101,19 @@ def get_login():
 	return login
 
 def filter_courses(course_name, course_id) -> bool:
-	is_this_semestre = [term in course_name for term in ['2021-1', '2021/2'] ]
-	# return any(is_this_semestre)
+	from datetime import date
+	today = date.today()
+	today_year = today.year
+
+	# Cria uma lista de variação de marcação de semestres do ano
+	# Ex: 2020/1, 2020-1, 2020/2, 2020-2
+	semestres = []
+	for semestre in range(1, 3):
+		for divisor in ['-', '/']:
+			semestres.append(f"{today_year}{divisor}{semestre}") 
+
+	is_this_semestre = [term in course_name for term in semestres ]
+	return any(is_this_semestre)
 
 def filter_tasks(task_data) -> bool:
 	return True
