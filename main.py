@@ -109,7 +109,7 @@ def filter_courses(course_name, course_id) -> bool:
 	# Ex: 2020/1, 2020-1, 2020/2, 2020-2
 	semestres = []
 	for semestre in range(1, 3):
-		for divisor in ['-', '/']:
+		for divisor in ['-', '/', '.']:
 			semestres.append(f"{today_year}{divisor}{semestre}") 
 
 	is_this_semestre = [term in course_name for term in semestres ]
